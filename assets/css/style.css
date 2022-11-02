@@ -6,11 +6,11 @@ body {
 
 form {
     padding: 50px 20px;
-    background: #ca0a1d;
+    background: #212389;
     /* fallback for old browsers */
-    background: -webkit-linear-gradient(to right, #892138, #bb1d2d);
+    background: -webkit-linear-gradient(to right, #212389, #63a9e2);
     /* Chrome 10-25, Safari 5.1-6 */
-    background: linear-gradient(to right, #89212f, #bb1d2d);
+    background: linear-gradient(to right, #212389, #63a9e2);
     /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
     margin: calc(25% + 100px);
     margin-top: 70px;
@@ -27,7 +27,7 @@ form {
 h1 {
     text-align: center;
     padding: 12px;
-    color: rgb(169, 8, 8)
+    color: rgb(44, 2, 122)
 }
 
 input {

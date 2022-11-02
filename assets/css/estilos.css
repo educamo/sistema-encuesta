@@ -13,7 +13,7 @@ body {
 }
 
 .nav-link:hover {
-    background-color: brown;
+    background-color: rgb(1, 53, 121);
     margin: 2px;
     border-radius: 5px;
 }
@@ -35,11 +35,11 @@ body {
 }
 
 header {
-    background: #ca0a1d;
+    background: #0aa4ca;
     /* fallback for old browsers */
-    background: -webkit-linear-gradient(to right, #892138, #e2636f);
+    background: -webkit-linear-gradient(to right, #212389, #63a9e2);
     /* Chrome 10-25, Safari 5.1-6 */
-    background: linear-gradient(to right, #89212f, #ee606f);
+    background: linear-gradient(to right, #212389, #63a9e2);
     /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
     height: auto;
     padding: 5px;
@@ -107,11 +107,11 @@ img {
 .wave {
     height: 100px;
     width: 100%;
-    background: #ca0a1d;
+    background: #0a6dca;
     /* fallback for old browsers */
-    background: -webkit-linear-gradient(to right, #892138, #e2636f);
+    background: -webkit-linear-gradient(to right, #212389, #63a9e2);
     /* Chrome 10-25, Safari 5.1-6 */
-    background: linear-gradient(to right, #89212f, #ee606f);
+    background: linear-gradient(to right, #212389, #63a9e2);
     /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 
@@ -127,11 +127,11 @@ img {
     flex-direction: column;
     width: 100%;
     transition: all 1s ease;
-    background: #bc4e9c;
+    background: #664ebc;
     /* fallback for old browsers */
-    background: -webkit-linear-gradient(to right, #f80759, #bc4e9c);
+    background: -webkit-linear-gradient(to right, #212389, #63a9e2);
     /* Chrome 10-25, Safari 5.1-6 */
-    background: linear-gradient(to right, #f80759, #bc4e9c);
+    background: linear-gradient(to right, #212389, #63a9e2);
     /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 
@@ -164,7 +164,7 @@ footer p {
     font-size: 12pt;
     font-weight: bold;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    color: #ca0a1d;
+    color: #0a27ca;
 }
 
 footer img {
@@ -184,6 +184,7 @@ footer img {
         opacity: 0;
         transform: translateX(-100px);
     }
+
     100% {
         opacity: 1;
         transform: translate(0);
@@ -195,6 +196,7 @@ footer img {
         opacity: 0;
         transform: translateX(100px);
     }
+
     100% {
         opacity: 1;
         transform: translate(0);
@@ -206,6 +208,7 @@ footer img {
         opacity: 0;
         transform: translateY(100px);
     }
+
     100% {
         opacity: 1;
         transform: translate(0);
@@ -222,9 +225,11 @@ footer img {
     img {
         height: 370px;
     }
+
     .textos h1 {
         font-size: 70px;
     }
+
     .textos h2 {
         font-size: 25px;
     }
@@ -234,9 +239,11 @@ footer img {
     img {
         height: 250px;
     }
+
     .textos h1 {
         font-size: 40px;
     }
+
     .textos h2 {
         font-size: 15px;
     }
@@ -248,10 +255,12 @@ footer img {
         flex-wrap: wrap-reverse;
         justify-content: center;
     }
+
     .textos {
         width: 100%;
         text-align: center;
     }
+
     .textos h1 {
         font-size: 60px;
     }
@@ -261,12 +270,15 @@ footer img {
     img {
         height: 160px;
     }
+
     .textos h1 {
         font-size: 35px;
     }
+
     .textos a {
         width: 120px;
     }
+
     .textos h2 {
         font-size: 15px;
     }
