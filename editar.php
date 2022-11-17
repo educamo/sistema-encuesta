@@ -4,7 +4,7 @@ $tipo = $_GET['tipo'];
 
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
     <meta charset="UTF-8">
@@ -35,8 +35,8 @@ $tipo = $_GET['tipo'];
 
         if (mysqli_query($conexion, $query)) {
             $msj = "Registro actualizado con éxito";
-            echo "<h1 style='color: white; text-align: center;margin-top: 05%;background-color: green;padding: 5px;'>" . $msj . "</h1>";
-            echo "<div style='text-align: center;'><a href='registrogeneral.php' style='text-decoration: none;'><span style='width: 10px;background-color: cornflowerblue;padding: 10px;color: white;border-radius: 5px;'>continuar</span></a></div>";
+            echo "<h1 style='text-align: center; margin-top: 05%; padding: 5px;' class='alert alert-success' role='alert'>" . $msj . "</h1>";
+            echo "<div style='text-align: center;'><a href='registrogeneral.php' class='btn btn-success'>continuar</a></div>";
         } else {
             echo "Error: " . $query . "<br>" . mysqli_error($conexion);
         };
@@ -46,7 +46,7 @@ $tipo = $_GET['tipo'];
     if ($tipo == 'vivienda') {
 
         $cedula = $_POST['cedula'];
-        $codigoVivienda = $_POST['id'];
+        $NoVivienda = $_POST['id'];
         $tipoVivienda = $_POST['tipoVivienda'];
         $condicion = $_POST['condicion'];
         $tipoTecho = $_POST['tipoTecho'];
@@ -56,55 +56,56 @@ $tipo = $_GET['tipo'];
         $aguasNegras = $_POST['aguasNegras'];
 
         include_once('conexion.php');
-        $query = "UPDATE vivienda SET tipoVivienda = '$tipoVivienda', condicion = '$condicion', tipoTecho = '$tipoTecho', tipoPiso = '$tipoPiso', agua = '$agua', luz = '$luz', aguasNegras = '$aguasNegras' WHERE codigoVivienda = $codigoVivienda";
+        $query = "UPDATE vivienda SET tipoVivienda = '$tipoVivienda', condicion = '$condicion', tipoTecho = '$tipoTecho', tipoPiso = '$tipoPiso', agua = '$agua', luz = '$luz', aguasNegras = '$aguasNegras' WHERE NoVivienda = $NoVivienda";
 
         if (mysqli_query($conexion, $query)) {
             $msj = "Vivienda actualizada con éxito";
-            echo "<h1 style='color: white; text-align: center;margin-top: 05%;background-color: green;padding: 5px;'>" . $msj . "</h1>";
-            echo "<div style='text-align: center;'><a href='vivienda.php?persona=".$cedula."' style='text-decoration: none;'><span style='width: 10px;background-color: cornflowerblue;padding: 10px;color: white;border-radius: 5px;'>continuar</span></a></div>";
+            echo "<h1 style='text-align: center; margin-top: 05%; padding: 5px;' class='alert alert-success' role='alert'>" . $msj . "</h1>";
+            echo "<div style='text-align: center;'><a href='vivienda.php?persona=" . $cedula . "' class='btn btn-success'>continuar</a></div>";
         } else {
             echo "Error: " . $query . "<br>" . mysqli_error($conexion);
         };
     }
-    
+
     // codigo que guarda la edicion de las medicinas
     if ($tipo == 'medicina') {
 
         $cedula = $_POST['cedula'];
-        $codigoSalud = $_POST['id'];
+        $idMedicinas = $_POST['id'];
         $medicamentos = $_POST['medicamentos'];
         $patologias = $_POST['patologias'];
         $embarazadas = $_POST['embarazadas'];
         $discapacidad = $_POST['discapacidad'];
-        
+
         include_once('conexion.php');
-        $query = "UPDATE salud SET medicamentos = '$medicamentos', patologias = '$patologias', embarazadas = '$embarazadas', discapacidad = '$discapacidad' WHERE codigoSalud = $codigoSalud";
+        $query = "UPDATE salud SET medicamentos = '$medicamentos', patologias = '$patologias', embarazadas = '$embarazadas', discapacidad = '$discapacidad' WHERE idMedicinas = $idMedicinas";
 
         if (mysqli_query($conexion, $query)) {
             $msj = "Registro de Salud actualizado con éxito";
-            echo "<h1 style='color: white; text-align: center;margin-top: 05%;background-color: green;padding: 5px;'>" . $msj . "</h1>";
-            echo "<div style='text-align: center;'><a href='medicina.php?persona=".$cedula."' style='text-decoration: none;'><span style='width: 10px;background-color: cornflowerblue;padding: 10px;color: white;border-radius: 5px;'>continuar</span></a></div>";
+            echo "<h1 style='text-align: center; margin-top: 05%; padding: 5px;' class='alert alert-success' role='alert'>" . $msj . "</h1>";
+            echo "<div style='text-align: center;'><a href='medicina.php?persona=" . $cedula . "' class='btn btn-success'>continuar</a></div>";
         } else {
             echo "Error: " . $query . "<br>" . mysqli_error($conexion);
         };
     }
 
-    // codigo que guarda la edicion de las medicinas
+    // codigo que guarda la edicion del gas
     if ($tipo == 'gas') {
 
         $cedula = $_POST['cedula'];
-        $codigoGas = $_POST['id'];
+        $idGas = $_POST['idGas'];
+        $cantidad = $_POST['cantidad'];
         $tipo = $_POST['tipo'];
         $bombonaSocial = $_POST['bombonaSocial'];
         $codigo = $_POST['codigo'];
-        
+
         include_once('conexion.php');
-        $query = "UPDATE gas SET tipo = '$tipo', bombonaSocial = '$bombonaSocial', codigo = '$codigo' WHERE codigoGas = $codigoGas";
+        $query = "UPDATE gas SET cantidad = '$cantidad', tipo = '$tipo', bombonaSocial = '$bombonaSocial', codigo = '$codigo' WHERE idGas = $idGas";
 
         if (mysqli_query($conexion, $query)) {
             $msj = "Registro de Gas actualizado con éxito";
-            echo "<h1 style='color: white; text-align: center;margin-top: 05%;background-color: green;padding: 5px;'>" . $msj . "</h1>";
-            echo "<div style='text-align: center;'><a href='gas.php?persona=".$cedula."' style='text-decoration: none;'><span style='width: 10px;background-color: cornflowerblue;padding: 10px;color: white;border-radius: 5px;'>continuar</span></a></div>";
+            echo "<h1 style='text-align: center; margin-top: 05%; padding: 5px;' class='alert alert-success' role='alert'>" . $msj . "</h1>";
+            echo "<div style='text-align: center;'><a href='gas.php?persona=" . $cedula . "' class='btn btn-success'>continuar</a></div>";
         } else {
             echo "Error: " . $query . "<br>" . mysqli_error($conexion);
         };

@@ -35,17 +35,17 @@ $tipo = $_GET['tipo'];
 
         if (mysqli_query($conexion, $query)) {
             $msj = "Nuevo registro creado con éxito";
-            echo "<h1 style='color: white; text-align: center;margin-top: 05%;background-color: green;padding: 5px;'>" . $msj . "</h1>";
-            echo "<div style='text-align: center;'><a href='registrogeneral.php' style='text-decoration: none;'><span style='width: 10px;background-color: cornflowerblue;padding: 10px;color: white;border-radius: 5px;'>continuar</span></a></div>";
+            echo "<h1 style='text-align: center; margin-top: 05%; padding: 5px;' class='alert alert-success' role='alert'>" . $msj . "</h1>";
+            echo "<div style='text-align: center;'><a href='registrogeneral.php' class='btn btn-success'>continuar</a></div>";
         } else {
             echo "Error: " . $query . "<br>" . mysqli_error($conexion);
-
         };
     }
 
     // codigo guarda los datos de la nueva vivienda
     if ($tipo == 'vivienda') {
 
+        $NoVivienda = $_POST['NoVivienda'];
         $cedula = $_POST['cedula'];
         $tipoVivienda = $_POST['tipoVivienda'];
         $condicion = $_POST['condicion'];
@@ -56,17 +56,17 @@ $tipo = $_GET['tipo'];
         $aguanegras = $_POST['aguanegras'];
 
         include_once('conexion.php');
-        $query = "INSERT INTO vivienda (cedula, tipoVivienda, condicion, tipoTecho, tipoPiso, agua, luz, aguasNegras) VALUES ('$cedula', '$tipoVivienda', '$condicion', '$tipoTecho', '$tipoPiso', '$agua', '$luz', '$aguanegras')";
+        $query = "INSERT INTO vivienda (NoVivienda, cedula, tipoVivienda, condicion, tipoTecho, tipoPiso, agua, luz, aguasNegras) VALUES ('$NoVivienda', '$cedula', '$tipoVivienda', '$condicion', '$tipoTecho', '$tipoPiso', '$agua', '$luz', '$aguanegras')";
 
         if (mysqli_query($conexion, $query)) {
             $msj = "Vivienda creada con éxito";
-            echo "<h1 style='color: white; text-align: center;margin-top: 05%;background-color: green;padding: 5px;'>" . $msj . "</h1>";
-            echo "<div style='text-align: center;'><a href='vivienda.php?persona=".$cedula."' style='text-decoration: none;'><span style='width: 10px;background-color: cornflowerblue;padding: 10px;color: white;border-radius: 5px;'>continuar</span></a></div>";
+            echo "<h1 style='text-align: center; margin-top: 05%; padding: 5px;' class='alert alert-success' role='alert'>" . $msj . "</h1>";
+            echo "<div style='text-align: center;'><a href='vivienda.php?persona=" . $cedula . "' class='btn btn-success'>continuar</a></div>";
         } else {
             echo "Error: " . $query . "<br>" . mysqli_error($conexion);
         };
     }
-    
+
     // codigo guarda los nuevos datos de salud
     if ($tipo == 'medicina') {
 
@@ -81,28 +81,30 @@ $tipo = $_GET['tipo'];
 
         if (mysqli_query($conexion, $query)) {
             $msj = "Regsitro de Salud creado con éxito";
-            echo "<h1 style='color: white; text-align: center;margin-top: 05%;background-color: green;padding: 5px;'>" . $msj . "</h1>";
-            echo "<div style='text-align: center;'><a href='medicina.php?persona=".$cedula."' style='text-decoration: none;'><span style='width: 10px;background-color: cornflowerblue;padding: 10px;color: white;border-radius: 5px;'>continuar</span></a></div>";
+            echo "<h1 style='text-align: center; margin-top: 05%; padding: 5px;' class='alert alert-success' role='alert'>" . $msj . "</h1>";
+            echo "<div style='text-align: center;'><a href='medicina.php?persona=" . $cedula . "' class='btn btn-success'>continuar</a></div>";
         } else {
             echo "Error: " . $query . "<br>" . mysqli_error($conexion);
         };
     }
-    
+
     //codigo guarda datos nuevo registro gas
     if ($tipo == 'gas') {
 
+        $idGas = $_POST['idGas'];
         $cedula = $_POST['cedula'];
         $tipo = $_POST['tipo'];
+        $cantidad = $_POST['cantidad'];
         $bombonaSocial = $_POST['bombonaSocial'];
         $codigo = $_POST['codigo'];
 
         include_once('conexion.php');
-        $query = "INSERT INTO gas (cedula, tipo, bombonaSocial, codigo) VALUES ('$cedula', '$tipo', '$bombonaSocial', '$codigo')";
+        $query = "INSERT INTO gas (idGas, cedula, cantidad, tipo, bombonaSocial, codigo) VALUES ('$idGas','$cedula', '$cantidad', '$tipo', '$bombonaSocial', '$codigo')";
 
         if (mysqli_query($conexion, $query)) {
-            $msj = "Regsitro de Gas creado con éxito";
-            echo "<h1 style='color: white; text-align: center;margin-top: 05%;background-color: green;padding: 5px;'>" . $msj . "</h1>";
-            echo "<div style='text-align: center;'><a href='gas.php?persona=".$cedula."' style='text-decoration: none;'><span style='width: 10px;background-color: cornflowerblue;padding: 10px;color: white;border-radius: 5px;'>continuar</span></a></div>";
+            $msj = "Registro de Gas creado con éxito";
+            echo "<h1 style='text-align: center; margin-top: 05%; padding: 5px;' class='alert alert-success' role='alert'>" . $msj . "</h1>";
+            echo "<div style='text-align: center;'><a href='gas.php?persona=" . $cedula . "' class='btn btn-success'>continuar</a></div>";
         } else {
             echo "Error: " . $query . "<br>" . mysqli_error($conexion);
         };

@@ -4,13 +4,13 @@ $id = $_GET['id'];
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Borrar <?=$tipo?></title>
+    <title>Borrar <?= $tipo ?></title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <link rel="stylesheet" href="assets/css/estilos.css">
@@ -26,21 +26,21 @@ $id = $_GET['id'];
         include_once('conexion.php');
 
         if (isset($_GET['accion'])) {
-             $query = "DELETE FROM general WHERE cedula =".$id;
+            $query = "DELETE FROM general WHERE cedula =" . $id;
 
             if (mysqli_query($conexion, $query)) {
                 $msj = "Registro Borrado con éxito";
-                echo "<h1 style='color: white; text-align: center;margin-top: 05%;background-color: green;padding: 5px;'>" . $msj . "</h1>";
+                echo "<h1 style='text-align: center; margin-top: 05%; padding: 5px;' class='alert alert-success' role='alert'>" . $msj . "</h1>";
                 echo "<div style='text-align: center;'><a href='registrogeneral.php' class='btn btn-success'>continuar</a></div>";
             } else {
                 echo "Error: " . $query . "<br>" . mysqli_error($conexion);
             };
         } else {
-            $link = "borrar.php?tipo=". $tipo . "&id=" . $id . "&accion=1";
+            $link = "borrar.php?tipo=" . $tipo . "&id=" . $id . "&accion=1";
 
 
             $msj = "Seguro de Borrar el registro";
-            echo "<h1 style='color: white; text-align: center;margin-top: 05%;background-color: red;padding: 5px;'>" . $msj . "</h1>";
+            echo "<h1 style='text-align: center;margin-top: 05%;background-color: red;padding: 5px;'>" . $msj . "</h1>";
             echo "<div style='text-align: center;'>
             <a href=" . $link . " class='btn btn-success''>Aceptar</a>
             <a href='registrogeneral.php' class='btn btn-warning'>Cancelar</a>
@@ -56,17 +56,17 @@ $id = $_GET['id'];
         include_once('conexion.php');
 
         if (isset($_GET['accion'])) {
-             $query = "DELETE FROM vivienda WHERE codigoVivienda =".$id;
+            $query = "DELETE FROM vivienda WHERE NoVivienda =" . $id;
 
             if (mysqli_query($conexion, $query)) {
                 $msj = "Vivienda Borrada con éxito";
-                echo "<h1 style='color: white; text-align: center;margin-top: 05%;background-color: green;padding: 5px;'>" . $msj . "</h1>";
+                echo "<h1 style='text-align: center; margin-top: 05%; padding: 5px;' class='alert alert-success' role='alert'>" . $msj . "</h1>";
                 echo "<div style='text-align: center;'><a href='vivienda.php?persona=$persona' class='btn btn-success'>continuar</a></div>";
             } else {
                 echo "Error: " . $query . "<br>" . mysqli_error($conexion);
             };
         } else {
-            $link = "borrar.php?tipo=" . $tipo . "&id=" . $id . "&accion=1&persona=". $persona;
+            $link = "borrar.php?tipo=" . $tipo . "&id=" . $id . "&accion=1&persona=" . $persona;
 
 
             $msj = "Seguro de Borrar la Vivienda";
@@ -86,17 +86,17 @@ $id = $_GET['id'];
         include_once('conexion.php');
 
         if (isset($_GET['accion'])) {
-             $query = "DELETE FROM salud WHERE codigoSalud =".$id;
+            $query = "DELETE FROM salud WHERE idMedicinas =" . $id;
 
             if (mysqli_query($conexion, $query)) {
                 $msj = "Registro de Salud Borrado con éxito";
-                echo "<h1 style='color: white; text-align: center;margin-top: 05%;background-color: green;padding: 5px;'>" . $msj . "</h1>";
+                echo "<h1 style='text-align: center; margin-top: 05%; padding: 5px;' class='alert alert-success' role='alert'>" . $msj . "</h1>";
                 echo "<div style='text-align: center;'><a href='medicina.php?persona=$persona' class='btn btn-success'>continuar</a></div>";
             } else {
                 echo "Error: " . $query . "<br>" . mysqli_error($conexion);
             };
         } else {
-            $link = "borrar.php?tipo=" . $tipo . "&id=" . $id . "&accion=1&persona=". $persona;
+            $link = "borrar.php?tipo=" . $tipo . "&id=" . $id . "&accion=1&persona=" . $persona;
 
 
             $msj = "Seguro de Borrar El Registro de Salud";
@@ -116,17 +116,17 @@ $id = $_GET['id'];
         include_once('conexion.php');
 
         if (isset($_GET['accion'])) {
-             $query = "DELETE FROM gas WHERE codigoGas =".$id;
+            $query = "DELETE FROM gas WHERE idGas =" . $id;
 
             if (mysqli_query($conexion, $query)) {
                 $msj = "Registro de Gas Borrado con éxito";
-                echo "<h1 style='color: white; text-align: center;margin-top: 05%;background-color: green;padding: 5px;'>" . $msj . "</h1>";
+                echo "<h1 style='text-align: center; margin-top: 05%; padding: 5px;' class='alert alert-success' role='alert'>" . $msj . "</h1>";
                 echo "<div style='text-align: center;'><a href='gas.php?persona=$persona' class='btn btn-success'>continuar</a></div>";
             } else {
                 echo "Error: " . $query . "<br>" . mysqli_error($conexion);
             };
         } else {
-            $link = "borrar.php?tipo=" . $tipo . "&id=" . $id . "&accion=1&persona=". $persona;
+            $link = "borrar.php?tipo=" . $tipo . "&id=" . $id . "&accion=1&persona=" . $persona;
 
 
             $msj = "Seguro de Borrar El Registro de Gas";

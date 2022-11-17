@@ -16,6 +16,7 @@ body {
     background-color: rgb(1, 53, 121);
     margin: 2px;
     border-radius: 5px;
+    color: #fff !important;
 }
 
 .icono {
@@ -46,15 +47,6 @@ header {
     width: 100%;
 }
 
-.container {
-    width: 95%;
-    max-width: 1200px;
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-    margin: auto;
-}
-
 .text-justify {
     text-align: justify;
 }
@@ -78,11 +70,6 @@ img {
 .textos {
     width: 50%;
     color: #fff;
-}
-
-.textos h1 {
-    font-size: 80px;
-    animation: moverDerecha 1s ease-in;
 }
 
 .textos h2 {
@@ -150,23 +137,6 @@ img {
     margin: 5px;
 }
 
-footer {
-    bottom: 0px;
-    margin-bottom: 0px;
-    width: 100%;
-    height: 90px;
-    background-color: #dad9d9;
-    padding: 20px;
-}
-
-footer p {
-    margin-left: 5%;
-    font-size: 12pt;
-    font-weight: bold;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    color: #0a27ca;
-}
-
 footer img {
     width: 40px;
     height: auto;
@@ -179,12 +149,20 @@ footer img {
     padding: 10px;
 }
 
+main {
+    margin-bottom: 2%;
+}
+
+.login {
+    padding-top: 0px;
+    margin-top: 0px;
+}
+
 @keyframes moverIzquierda {
     0% {
         opacity: 0;
         transform: translateX(-100px);
     }
-
     100% {
         opacity: 1;
         transform: translate(0);
@@ -196,7 +174,6 @@ footer img {
         opacity: 0;
         transform: translateX(100px);
     }
-
     100% {
         opacity: 1;
         transform: translate(0);
@@ -208,7 +185,6 @@ footer img {
         opacity: 0;
         transform: translateY(100px);
     }
-
     100% {
         opacity: 1;
         transform: translate(0);
@@ -225,11 +201,9 @@ footer img {
     img {
         height: 370px;
     }
-
     .textos h1 {
         font-size: 70px;
     }
-
     .textos h2 {
         font-size: 25px;
     }
@@ -239,11 +213,9 @@ footer img {
     img {
         height: 250px;
     }
-
     .textos h1 {
         font-size: 40px;
     }
-
     .textos h2 {
         font-size: 15px;
     }
@@ -255,12 +227,10 @@ footer img {
         flex-wrap: wrap-reverse;
         justify-content: center;
     }
-
     .textos {
         width: 100%;
         text-align: center;
     }
-
     .textos h1 {
         font-size: 60px;
     }
@@ -270,15 +240,12 @@ footer img {
     img {
         height: 160px;
     }
-
     .textos h1 {
         font-size: 35px;
     }
-
     .textos a {
         width: 120px;
     }
-
     .textos h2 {
         font-size: 15px;
     }

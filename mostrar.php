@@ -5,22 +5,20 @@
 // codigo que busca en la bd todos los registros de la tabla general para cargar los datos de la tabla en la vista
 //Registro general
 if ($tituloPagina == 'Registro General') {
-    
+
     include_once('conexion.php');
     $consulta = "SELECT * FROM general";
     $resultado = mysqli_query($conexion, $consulta);
- 
 }
 
 // codigo que busca los datos a editar en el formulario de Editar Registro General
 if ($tituloPagina == 'Editar Registro') {
 
     $id = $_GET['id'];
-    
+
     include_once('conexion.php');
     $consulta = "SELECT * FROM general WHERE cedula = $id";
     $resultado = mysqli_query($conexion, $consulta);
- 
 }
 
 ## Vivienda
@@ -40,18 +38,16 @@ if ($tituloPagina == 'Viviendas') {
 
     $consultaVivienda = "SELECT * FROM vivienda WHERE cedula = $id";
     $resultadoVivienda = mysqli_query($conexion, $consultaVivienda);
-    
 }
 
 // codigo que busca los datos a editar en el formulario de Editar Vivienda
 if ($tituloPagina == 'Editar Vivienda') {
 
     $id = $_GET['id'];
-    
+
     include_once('conexion.php');
-    $consulta = "SELECT * FROM vivienda WHERE codigoVivienda = $id";
+    $consulta = "SELECT * FROM vivienda WHERE NoVivienda = $id";
     $resultado = mysqli_query($conexion, $consulta);
- 
 }
 
 ## Medicina
@@ -71,18 +67,16 @@ if ($tituloPagina == 'Medicinas') {
 
     $consultasalud = "SELECT * FROM salud WHERE cedula = $id";
     $resultadoMedicina = mysqli_query($conexion, $consultasalud);
-    
 }
 
 // codigo que busca los datos a editar en el formulario de Editar Medicinas
 if ($tituloPagina == 'Editar Medicina') {
 
     $id = $_GET['id'];
-    
+
     include_once('conexion.php');
-    $consulta = "SELECT * FROM salud WHERE codigoSalud = $id";
+    $consulta = "SELECT * FROM salud WHERE idMedicinas = $id";
     $resultado = mysqli_query($conexion, $consulta);
- 
 }
 
 ## Gas
@@ -102,17 +96,14 @@ if ($tituloPagina == 'gas') {
 
     $consultaGas = "SELECT * FROM gas WHERE cedula = $id";
     $resultadogas = mysqli_query($conexion, $consultaGas);
-    
 }
 
 // codigo que busca los datos a editar en el formulario de Editar Gas
 if ($tituloPagina == 'Editar Gas') {
 
     $id = $_GET['id'];
-    
+
     include_once('conexion.php');
-    $consulta = "SELECT * FROM gas WHERE codigoGas = $id";
+    $consulta = "SELECT * FROM gas WHERE idGas = $id";
     $resultado = mysqli_query($conexion, $consulta);
- 
 }
-?>

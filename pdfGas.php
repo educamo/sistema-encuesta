@@ -116,9 +116,15 @@ FROM
         $nombre = $row['nombre'];
         $apellido = $row['apellido'];
         $tlf = $row['telefono'];
-        $tipo = $row['tipo'];
+        $tipo = $row['tipo']."Kg";
         $bombonaSocial = $row['bombonaSocial'];
         $codigo = $row['codigo'];
+
+        if ($bombonaSocial === '1') {
+            $bombonaSocial = 'Si';
+        }else {
+            $bombonaSocial = 'No';
+        }
 
 
         $html2 = '
