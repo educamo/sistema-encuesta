@@ -78,9 +78,7 @@
             </main>
 
             <script type="text/javascript">
-                $(document).ready(function() {
-                    $('#personas').DataTable();
-                });
+                var tablaId = "#personas";
 
                 $('.btn-danger').click(function(e) {
                     e.preventDefault();
