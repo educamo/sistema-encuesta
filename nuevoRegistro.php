@@ -58,8 +58,15 @@ include_once('header.php');
                                 <label for="telefono" class="form-label">TELEFONO</label>
                                 <input type="phone" id="telefono" name="telefono" class="form-control">
                             </div>
+                            <div class="col-lg-4">
+                                <label for="jefeFamilia" class="form-label">JEFE DE FAMILIA</label>
+                                <select name="jefeFamilia" id="jefeFamilia" class="form-select">
+                                    <option value="0">No</option>
+                                    <option value="1">Si</option>
+                                </select>
+                            </div>
                         </div>
-                        <div class="row text-center">
+                        <div class="row text-center mt-4">
                             <div class="col-lg-12">
                                 <input type="submit" value="Guardar" class="btn btn-success">
                                 <a href="nuevoRegistro.php?new=0" class="btn btn-primary">Cancelar</a>

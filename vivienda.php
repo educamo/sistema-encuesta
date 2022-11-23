@@ -32,15 +32,15 @@ include_once('header.php');
                                 <label for="persona" class="form-label">Representante de la Vivienda</label>
                             </div>
                             <div class="col-lg-6">
-                                <select name="persona" id="persona" class="form-select">
-                                    <option value="0">Seleccione una opción</option>
+                                <select name="persona" id="persona" class="form-select mi-selector">
+                                    <option></option>
                                     <?php
                                     while ($row = mysqli_fetch_array($resultado)) {
                                         $id = $row['cedula'];
                                         $nom = $row['nombre'];
                                         $apelli = $row['apellido'];
                                     ?>
-                                        <option value="<?= $id ?>"><?= $nom . " " . $apelli ?></option>
+                                        <option value="<?= $id ?>"><?= $id . " - ". $nom . " " . $apelli ?></option>
                                     <?php
                                     }
                                     mysqli_free_result($resultado);
@@ -149,9 +149,7 @@ include_once('header.php');
 </main>
 
 <script type="text/javascript">
-    $(document).ready(function() {
-        $('#viviendas').DataTable();
-    });
+    var tablaId = "#viviendas";
 
     $('.btn-danger').click(function(e) {
         e.preventDefault();
@@ -175,3 +173,16 @@ include_once('header.php');
 
 
 <?php include_once('footer.php'); ?>
+
+<script>
+    $(document).ready(function() {
+
+
+        $('.mi-selector').select2({
+            placeholder: "Selecciona una persona",
+            allowClear: true
+        });
+
+
+    });
+</script>

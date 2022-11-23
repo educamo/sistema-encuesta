@@ -29,14 +29,31 @@ $tipo = $_GET['tipo'];
         $nacimiento = $_POST['nacimiento'];
         $edoCivil = $_POST['edoCivil'];
         $telefono = $_POST['telefono'];
+        $jefeFamilia = $_POST['jefeFamilia'];
 
         include_once('conexion.php');
-        $query = "INSERT INTO general (cedula, nombre, apellido, sexo, nacimiento, edoCivil, telefono) VALUES ('$cedula', '$nombre', '$apellido', '$sexo', '$nacimiento', '$edoCivil', '$telefono')";
+        $query = "INSERT INTO general (cedula, nombre, apellido, sexo, nacimiento, edoCivil, telefono, jefeFamilia) VALUES ('$cedula', '$nombre', '$apellido', '$sexo', '$nacimiento', '$edoCivil', '$telefono', '$jefeFamilia')";
 
         if (mysqli_query($conexion, $query)) {
             $msj = "Nuevo registro creado con éxito";
             echo "<h1 style='text-align: center; margin-top: 05%; padding: 5px;' class='alert alert-success' role='alert'>" . $msj . "</h1>";
             echo "<div style='text-align: center;'><a href='registrogeneral.php' class='btn btn-success'>continuar</a></div>";
+        } else {
+            echo "Error: " . $query . "<br>" . mysqli_error($conexion);
+        };
+    }
+
+    if ($tipo == 'familiar') {
+        $familiar = $_POST['familiar'];
+        $jefeFamilia = $_POST['jefeFamilia'];
+
+        include_once('conexion.php');
+        $query = "INSERT INTO familia (familiar, jefeFamilia) VALUES ('$familiar', '$jefeFamilia')";
+
+        if (mysqli_query($conexion, $query)) {
+            $msj = "Se ha agregado el familiar con éxito";
+            echo "<h1 style='text-align: center; margin-top: 05%; padding: 5px;' class='alert alert-success' role='alert'>" . $msj . "</h1>";
+            echo "<div style='text-align: center;'><a href='familia.php?persona=" . $jefeFamilia . "' class='btn btn-success'>continuar</a></div>";
         } else {
             echo "Error: " . $query . "<br>" . mysqli_error($conexion);
         };

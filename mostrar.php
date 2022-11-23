@@ -11,6 +11,7 @@ if ($tituloPagina == 'Registro General') {
     $resultado = mysqli_query($conexion, $consulta);
 }
 
+
 // codigo que busca los datos a editar en el formulario de Editar Registro General
 if ($tituloPagina == 'Editar Registro') {
 
@@ -19,6 +20,30 @@ if ($tituloPagina == 'Editar Registro') {
     include_once('conexion.php');
     $consulta = "SELECT * FROM general WHERE cedula = $id";
     $resultado = mysqli_query($conexion, $consulta);
+}
+// codigo que busca en la bd todos los registros de la tabla general para cargar los datos del select en la vista
+//familia
+if ($tituloPagina == 'Registro de familias') {
+
+    include_once('conexion.php');
+    $consulta = "SELECT cedula, nombre, apellido FROM general WHERE jefeFamilia = 1";
+    $resultado = mysqli_query($conexion, $consulta);
+}
+
+// codigo que carga la Familia de la persona seleccionada
+if ($tituloPagina == 'Familia') {
+    include_once('conexion.php');
+    $consultaPersona = "SELECT cedula, nombre, apellido FROM general WHERE cedula = $id";
+    $resultadoPersona = mysqli_query($conexion, $consultaPersona);
+
+    $consultaFamilia = "SELECT g.cedula, g.nombre, g.apellido, f.jefeFamilia FROM general AS g INNER JOIN familia as f ON g.cedula= f.familiar WHERE  f.jefeFamilia = $id";
+    $resultadoFamilia = mysqli_query($conexion, $consultaFamilia);
+}
+// codigo para cargar select de agregar familiar
+if ($tituloPagina == 'Nuevo Familiar') {
+    include_once('conexion.php');
+    $consultaNuevafamilia = "SELECT cedula, nombre, apellido FROM general WHERE jefeFamilia = 0 AND not exists (select * from familia where familiar = cedula)";
+    $resultado = mysqli_query($conexion, $consultaNuevafamilia);
 }
 
 ## Vivienda
@@ -84,7 +109,7 @@ if ($tituloPagina == 'Editar Medicina') {
 // codigo que carga los datos de las personas en el select de Gas
 if ($tituloPagina == 'Registro de Gas') {
     include_once('conexion.php');
-    $consulta = "SELECT cedula, nombre, apellido FROM general";
+    $consulta = "SELECT cedula, nombre, apellido FROM general WHERE jefeFamilia = 1";
     $resultado = mysqli_query($conexion, $consulta);
 }
 
