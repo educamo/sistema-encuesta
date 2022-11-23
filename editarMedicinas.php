@@ -36,7 +36,37 @@ include_once('header.php');
                             </div>
                             <div class="col-lg-4">
                                 <label for="patologias" class="form-label">patologías</label>
-                                <input type="text" id="patologias" name="patologias" class="form-control" value="<?= $registro['patologias'] ?>">
+                                <select name="patologias" id="patologias" class="form-select mi-selector" required>
+                                    <option></option>
+                                    <option value="Diabetes" <?Php
+                                                                if ($registro['patologias'] == 'Diabetes') {
+                                                                    echo ' selected="selected"';
+                                                                } ?>>Diabetes</option>
+                                    <option value="Hipertensión" <?Php
+                                                                    if ($registro['patologias'] == 'Hipertensión') {
+                                                                        echo ' selected="selected"';
+                                                                    } ?>>Hipertensión</option>
+                                    <option value="Asma" <?Php
+                                                            if ($registro['patologias'] == 'Asma') {
+                                                                echo ' selected="selected"';
+                                                            } ?>>Asma</option>
+                                    <option value="Cancer" <?Php
+                                                            if ($registro['patologias'] == 'Cancer') {
+                                                                echo ' selected="selected"';
+                                                            } ?>>Cancer</option>
+                                    <option value="Sinusitis" <?Php
+                                                                if ($registro['patologias'] == 'Sinusitis') {
+                                                                    echo ' selected="selected"';
+                                                                } ?>>Sinusitis</option>
+                                    <option value="Tensión Ocular" <?Php
+                                                                    if ($registro['patologias'] == 'Tensión Ocular') {
+                                                                        echo ' selected="selected"';
+                                                                    } ?>>Tensión Ocular</option>
+                                    <option value="Autismo" <?Php
+                                                            if ($registro['patologias'] == 'Autismo') {
+                                                                echo ' selected="selected"';
+                                                            } ?>>Autismo</option>
+                                </select>
                             </div>
                             <div class="col-lg-4">
                                 <label for="embarazadas" class="form-label">Embarazada</label>
@@ -78,4 +108,17 @@ include_once('header.php');
     $('.btn-primary').click(function() {
         alertify.message('Se Cancelo la Operación');
     })
+</script>
+
+<script>
+    $(document).ready(function() {
+
+
+        $('.mi-selector').select2({
+            placeholder: "Selecciona una Patología",
+            allowClear: true
+        });
+
+
+    });
 </script>
