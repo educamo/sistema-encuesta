@@ -29,7 +29,16 @@ include_once('header.php');
                             </div>
                             <div class="col-lg-4">
                                 <label for="patologias" class="form-label">Patologías</label>
-                                <input type="text" id="patologias" name="patologias" class="form-control" required>
+                                <select name="patologias" id="patologias" class="form-select mi-selector" required>
+                                    <option></option>
+                                    <option value="Diabetes">Diabetes</option>
+                                    <option value="Hipertensión">Hipertensión</option>
+                                    <option value="Asma">Asma</option>
+                                    <option value="Cancer">Cancer</option>
+                                    <option value="Sinusitis">Sinusitis</option>
+                                    <option value="Tensión Ocular">Tensión Ocular</option>
+                                    <option value="Autismo">Autismo</option>
+                                </select>
                             </div>
                             <div class="col-lg-4">
                                 <label for="embarazadas" class="form-label">Embarazada</label>
@@ -65,4 +74,16 @@ include_once('header.php');
     $('.btn-primary').click(function() {
         alertify.message('Se Cancelo la Operación');
     })
+</script>
+<script>
+    $(document).ready(function() {
+
+
+        $('.mi-selector').select2({
+            placeholder: "Selecciona una Patología",
+            allowClear: true
+        });
+
+
+    });
 </script>
