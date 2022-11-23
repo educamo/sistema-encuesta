@@ -23,6 +23,7 @@ include_once('header.php');
             <ol>
                 <li><a target="_blank" href="pdfVivienda.php"> <span class="lista">Viviendas </span></a></li>
                 <li><a target="_blank" href="pdfSalud.php"> <span class="lista">Salud por Persona </span></a></li>
+                <li><a  href="select.php"> <span class="lista">Personas por Patologías </span></a></li>
                 <li><a target="_blank" href="pdfGas.php"> <span class="lista">Personas con Gas </span></a></li>
             </ol>
         </div>
