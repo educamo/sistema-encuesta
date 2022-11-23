@@ -11,7 +11,7 @@
  Target Server Version : 100425
  File Encoding         : 65001
 
- Date: 23/11/2022 12:53:18
+ Date: 23/11/2022 17:41:32
 */
 
 SET NAMES utf8mb4;
@@ -26,7 +26,7 @@ CREATE TABLE `familia`  (
   `familiar` varchar(40) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
   `jefeFamilia` varchar(40) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   PRIMARY KEY (`familiaId`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 14 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 16 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of familia
@@ -105,12 +105,13 @@ CREATE TABLE `salud`  (
   PRIMARY KEY (`idMedicinas`) USING BTREE,
   INDEX `cedulaSalud`(`cedula` ASC) USING BTREE,
   CONSTRAINT `cedulaSalud` FOREIGN KEY (`cedula`) REFERENCES `general` (`cedula`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of salud
 -- ----------------------------
-INSERT INTO `salud` VALUES (2, '12', 'esomeprazol', 'ulcera gastrica', 'no', 'problemas de cornea');
+INSERT INTO `salud` VALUES (2, '12', 'esomeprazol', 'Diabetes', 'no', 'problemas de cornea');
+INSERT INTO `salud` VALUES (3, '13', 'propanolol', 'Hipertensión', 'no', 'no');
 
 -- ----------------------------
 -- Table structure for vivienda
