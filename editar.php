@@ -29,9 +29,10 @@ $tipo = $_GET['tipo'];
         $nacimiento = $_POST['nacimiento'];
         $edoCivil = $_POST['edoCivil'];
         $telefono = $_POST['telefono'];
+        $jefeFamilia = $_POST['jefeFamilia'];
 
         include_once('conexion.php');
-        $query = "UPDATE general SET nombre = '$nombre', apellido = '$apellido', sexo = '$sexo', nacimiento = '$nacimiento', edoCivil = '$edoCivil', telefono = '$telefono' WHERE cedula = $cedula";
+        $query = "UPDATE general SET nombre = '$nombre', apellido = '$apellido', sexo = '$sexo', nacimiento = '$nacimiento', edoCivil = '$edoCivil', telefono = '$telefono', jefeFamilia = '$jefeFamilia' WHERE cedula = $cedula";
 
         if (mysqli_query($conexion, $query)) {
             $msj = "Registro actualizado con éxito";
