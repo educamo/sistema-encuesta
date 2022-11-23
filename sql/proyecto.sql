@@ -1,122 +1,139 @@
--- phpMyAdmin SQL Dump
--- version 4.8.2
--- https://www.phpmyadmin.net/
---
--- Servidor: 127.0.0.1
--- Tiempo de generación: 15-10-2021 a las 17:15:22
--- Versión del servidor: 10.1.34-MariaDB
--- Versión de PHP: 5.6.37
+/*
+ Navicat Premium Data Transfer
 
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
-START TRANSACTION;
-SET time_zone = "+00:00";
+ Source Server         : localhost
+ Source Server Type    : MySQL
+ Source Server Version : 100425
+ Source Host           : localhost:3306
+ Source Schema         : proyecto
 
+ Target Server Type    : MySQL
+ Target Server Version : 100425
+ File Encoding         : 65001
 
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
+ Date: 23/11/2022 12:53:18
+*/
 
---
--- Base de datos: `proyecto`
---
+SET NAMES utf8mb4;
+SET FOREIGN_KEY_CHECKS = 0;
 
+-- ----------------------------
+-- Table structure for familia
+-- ----------------------------
+DROP TABLE IF EXISTS `familia`;
+CREATE TABLE `familia`  (
+  `familiaId` int NOT NULL AUTO_INCREMENT,
+  `familiar` varchar(40) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
+  `jefeFamilia` varchar(40) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  PRIMARY KEY (`familiaId`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 14 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
 
--- --------------------------------------------------------
+-- ----------------------------
+-- Records of familia
+-- ----------------------------
 
---
--- Estructura de tabla para la tabla `gas`
---
+-- ----------------------------
+-- Table structure for gas
+-- ----------------------------
+DROP TABLE IF EXISTS `gas`;
+CREATE TABLE `gas`  (
+  `idGas` varchar(20) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
+  `cedula` varchar(40) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
+  `cantidad` int NOT NULL,
+  `tipo` int NOT NULL,
+  `bombonaSocial` int NULL DEFAULT NULL,
+  `codigo` varchar(50) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
+  PRIMARY KEY (`idGas`) USING BTREE,
+  INDEX `cedulaGas`(`cedula` ASC) USING BTREE,
+  CONSTRAINT `cedulaGas` FOREIGN KEY (`cedula`) REFERENCES `general` (`cedula`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE = InnoDB CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Dynamic;
 
-CREATE TABLE `gas` (
-  `cuantas posee` int(11) NOT NULL,
-  `tipo` int(11) NOT NULL,
-  `requiere bombona social` int(11) NOT NULL,
-  `posee codigo` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+-- ----------------------------
+-- Records of gas
+-- ----------------------------
+INSERT INTO `gas` VALUES ('1', '13', 1, 27, 1, 'bb271');
 
--- --------------------------------------------------------
+-- ----------------------------
+-- Table structure for general
+-- ----------------------------
+DROP TABLE IF EXISTS `general`;
+CREATE TABLE `general`  (
+  `cedula` varchar(40) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
+  `nombre` varchar(45) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
+  `apellido` varchar(45) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
+  `sexo` varchar(30) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
+  `nacimiento` date NOT NULL,
+  `edoCivil` varchar(40) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
+  `telefono` int NOT NULL,
+  `jefeFamilia` int NULL DEFAULT 0,
+  PRIMARY KEY (`cedula`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Dynamic;
 
---
--- Estructura de tabla para la tabla `login`
---
+-- ----------------------------
+-- Records of general
+-- ----------------------------
+INSERT INTO `general` VALUES ('12', 'Juan', 'Gonzalez', 'masculino', '1994-12-01', 'soltero', 987655, 1);
+INSERT INTO `general` VALUES ('13', 'carlos', 'paredes', 'masculino', '1984-10-13', 'soltero', 9080987, 0);
+INSERT INTO `general` VALUES ('14', 'mary', 'pernia', 'femenino', '2022-02-08', 'casado', 3456456, 0);
 
-CREATE TABLE `login` (
-  `usuario` varchar(30) NOT NULL,
-  `contra` varchar(25) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+-- ----------------------------
+-- Table structure for login
+-- ----------------------------
+DROP TABLE IF EXISTS `login`;
+CREATE TABLE `login`  (
+  `usuario` varchar(30) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
+  `contra` varchar(25) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
+  `nombre` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL
+) ENGINE = InnoDB CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Dynamic;
 
---
--- Volcado de datos para la tabla `login`
---
+-- ----------------------------
+-- Records of login
+-- ----------------------------
+INSERT INTO `login` VALUES ('admin', '123456', 'Administrador');
 
-INSERT INTO `login` (`usuario`, `contra`) VALUES
-('admin', '123456');
+-- ----------------------------
+-- Table structure for salud
+-- ----------------------------
+DROP TABLE IF EXISTS `salud`;
+CREATE TABLE `salud`  (
+  `idMedicinas` int NOT NULL AUTO_INCREMENT,
+  `cedula` varchar(40) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
+  `medicamentos` varchar(30) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
+  `patologias` varchar(25) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
+  `embarazadas` varchar(25) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
+  `discapacidad` varchar(20) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
+  PRIMARY KEY (`idMedicinas`) USING BTREE,
+  INDEX `cedulaSalud`(`cedula` ASC) USING BTREE,
+  CONSTRAINT `cedulaSalud` FOREIGN KEY (`cedula`) REFERENCES `general` (`cedula`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Dynamic;
 
--- --------------------------------------------------------
+-- ----------------------------
+-- Records of salud
+-- ----------------------------
+INSERT INTO `salud` VALUES (2, '12', 'esomeprazol', 'ulcera gastrica', 'no', 'problemas de cornea');
 
---
--- Estructura de tabla para la tabla `registro general`
---
+-- ----------------------------
+-- Table structure for vivienda
+-- ----------------------------
+DROP TABLE IF EXISTS `vivienda`;
+CREATE TABLE `vivienda`  (
+  `NoVivienda` varchar(20) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
+  `cedula` varchar(40) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
+  `tipoVivienda` varchar(30) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
+  `condicion` varchar(25) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
+  `tipoTecho` varchar(25) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
+  `tipoPiso` varchar(20) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
+  `agua` varchar(30) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
+  `luz` varchar(30) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
+  `aguasNegras` varchar(20) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
+  PRIMARY KEY (`NoVivienda`) USING BTREE,
+  INDEX `cedulaVivienda`(`cedula` ASC) USING BTREE,
+  CONSTRAINT `cedulaVivienda` FOREIGN KEY (`cedula`) REFERENCES `general` (`cedula`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE = InnoDB CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Dynamic;
 
-CREATE TABLE `registro general` (
-  `cedula` int(40) NOT NULL,
-  `nombre` varchar(45) NOT NULL,
-  `apellido` varchar(45) NOT NULL,
-  `sexo` varchar(30) NOT NULL,
-  `fecha de nacimiento` date NOT NULL,
-  `estado civil` varchar(40) NOT NULL,
-  `telefono` int(40) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+-- ----------------------------
+-- Records of vivienda
+-- ----------------------------
+INSERT INTO `vivienda` VALUES ('1', '13', 'casa', 'buena', 'platabanda', 'cemento', 'si', 'si', 'si');
 
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `salud`
---
-
-CREATE TABLE `salud` (
-  `medicamentos requeridos` varchar(30) NOT NULL,
-  `patologias que sufre` varchar(25) NOT NULL,
-  `embarazadas` varchar(25) NOT NULL,
-  `discapacidad` varchar(20) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `vivienda`
---
-
-CREATE TABLE `vivienda` (
-  `cedula` int(30) NOT NULL,
-  `tipo de vivienda` varchar(30) NOT NULL,
-  `condicion` varchar(25) NOT NULL,
-  `tipo de techo` varchar(25) NOT NULL,
-  `tipo de piso` varchar(20) NOT NULL,
-  `agua` varchar(30) NOT NULL,
-  `luz` varchar(30) NOT NULL,
-  `aguas negras` varchar(20) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Índices para tablas volcadas
---
-
---
--- Indices de la tabla `registro general`
---
-ALTER TABLE `registro general`
-  ADD PRIMARY KEY (`cedula`);
-
---
--- Indices de la tabla `vivienda`
---
-ALTER TABLE `vivienda`
-  ADD PRIMARY KEY (`cedula`);
-COMMIT;
-
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+SET FOREIGN_KEY_CHECKS = 1;
