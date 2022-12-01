@@ -31,15 +31,49 @@ $tipo = $_GET['tipo'];
         $telefono = $_POST['telefono'];
         $jefeFamilia = $_POST['jefeFamilia'];
 
-        include_once('conexion.php');
-        $query = "INSERT INTO general (cedula, nombre, apellido, sexo, nacimiento, edoCivil, telefono, jefeFamilia) VALUES ('$cedula', '$nombre', '$apellido', '$sexo', '$nacimiento', '$edoCivil', '$telefono', '$jefeFamilia')";
+        $NoVivienda = $_POST['NoVivienda'];
+        $calle = $_POST['calle'];
+        $tipoVivienda = $_POST['tipoVivienda'];
+        $condicion = $_POST['condicion'];
+        $tipoTecho = $_POST['tipoTecho'];
+        $tipoPiso = $_POST['tipoPiso'];
+        $agua = $_POST['agua'];
+        $luz = $_POST['luz'];
+        $aguanegras = $_POST['aguanegras'];
 
-        if (mysqli_query($conexion, $query)) {
+
+        include_once('conexion.php');
+
+        $consulta = "SELECT NoVivienda FROM vivienda WHERE NoVivienda = $NoVivienda";
+        $resultado = mysqli_query($conexion, $consulta);
+        $r = mysqli_num_rows($resultado);
+        if ($r > 0) {
+            $queryVivienda = "UPDATE vivienda SET calle = '$calle', tipoVivienda = '$tipoVivienda', condicion = '$condicion', tipoTecho = '$tipoTecho', tipoPiso = '$tipoPiso', agua = '$agua', luz = '$luz', aguasNegras = '$aguanegras' WHERE NoVivienda = $NoVivienda";
+        } else {
+            $queryVivienda = "INSERT INTO vivienda (NoVivienda, calle, tipoVivienda, condicion, tipoTecho, tipoPiso, agua, luz, aguasNegras) VALUES ('$NoVivienda', '$calle', '$tipoVivienda', '$condicion', '$tipoTecho', '$tipoPiso', '$agua', '$luz', '$aguanegras')";
+        }
+        $vivienda = mysqli_query($conexion, $queryVivienda);
+
+
+        $query = "INSERT INTO general (cedula, nombre, apellido, sexo, nacimiento, edoCivil, telefono, jefeFamilia, NoVivienda) VALUES ('$cedula', '$nombre', '$apellido', '$sexo', '$nacimiento', '$edoCivil', '$telefono', '$jefeFamilia', '$NoVivienda')";
+
+        if (isset($_POST['persona'])) {
+            $familiar = $cedula;
+            $parentesco = $_POST['parentesco'];
+            $cedulaJefefamilia = $_POST['persona'];
+
+            $queryFamilia = "INSERT INTO familia (familiar, jefeFamilia, parentesco) VALUES ('$familiar', '$cedulaJefefamilia', '$parentesco')";
+            $familia = mysqli_query($conexion, $queryFamilia);
+        }
+
+        if (mysqli_query($conexion, $query) && $vivienda) {
             $msj = "Nuevo registro creado con éxito";
             echo "<h1 style='text-align: center; margin-top: 05%; padding: 5px;' class='alert alert-success' role='alert'>" . $msj . "</h1>";
             echo "<div style='text-align: center;'><a href='registrogeneral.php' class='btn btn-success'>continuar</a></div>";
         } else {
             echo "Error: " . $query . "<br>" . mysqli_error($conexion);
+            echo "Error: " . $vivienda . "<br>" . mysqli_error($conexion);
+
         };
     }
 

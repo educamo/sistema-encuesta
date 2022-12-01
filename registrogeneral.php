@@ -18,6 +18,10 @@
                     <div class="col-lg-12 text-center">
                         <h2>Listado de Personas</h2>
                     </div>
+                    <div class="col-lg-12 text-end">
+                    <a href="gas.php" class="btn btn-primary" title="Gas"><i class="fa fa-fire"></i></a>
+                        <a href="pdfpersonas.php" class="btn btn-info" title="Imprimir" target="_blank"><i class="fa fa-print"></i></a>
+                    </div>
 
                     <div class="col-lg-8 mb-5">
                         <a href="nuevoRegistro.php?new=1" class="btn btn-success" title="Nuevo"><i class="fa fa-plus"></i> Nuevo Registro</a>
@@ -57,6 +61,7 @@
                                         <td><?= $row['edoCivil'] ?></td>
                                         <td><?= $row['telefono'] ?></td>
                                         <td>
+                                            <a href="medicina.php?persona=<?= $id ?>" class="btn btn-success" title="Salud"><i class="fa fa-plus"></i></a>
                                             <a href="editarRegistro.php?edit=1&tipo=registro&id='<?= $id ?>'" class="btn btn-warning" title="Editar"><i class="fa fa-edit"></i></a>
                                             <a href="#" class="btn btn-danger" title="Borrar"><i class="fa fa-trash"></i></a>
                                         </td>

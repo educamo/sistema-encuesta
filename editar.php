@@ -30,16 +30,41 @@ $tipo = $_GET['tipo'];
         $edoCivil = $_POST['edoCivil'];
         $telefono = $_POST['telefono'];
         $jefeFamilia = $_POST['jefeFamilia'];
+        $NoVivienda = $_POST['NoVivienda'];
+
+
+        $calle = $_POST['calle'];
+        $tipoVivienda = $_POST['tipoVivienda'];
+        $condicion = $_POST['condicion'];
+        $tipoTecho = $_POST['tipoTecho'];
+        $tipoPiso = $_POST['tipoPiso'];
+        $agua = $_POST['agua'];
+        $luz = $_POST['luz'];
+        $aguasNegras = $_POST['aguanegras'];
 
         include_once('conexion.php');
-        $query = "UPDATE general SET nombre = '$nombre', apellido = '$apellido', sexo = '$sexo', nacimiento = '$nacimiento', edoCivil = '$edoCivil', telefono = '$telefono', jefeFamilia = '$jefeFamilia' WHERE cedula = $cedula";
 
-        if (mysqli_query($conexion, $query)) {
+        $consulta = "SELECT NoVivienda FROM vivienda WHERE NoVivienda = $NoVivienda";
+        $resultado = mysqli_query($conexion, $consulta);
+        $r = mysqli_num_rows($resultado);
+        if ($r > 0) {
+            $queryVivienda = "UPDATE vivienda SET calle = '$calle', tipoVivienda = '$tipoVivienda', condicion = '$condicion', tipoTecho = '$tipoTecho', tipoPiso = '$tipoPiso', agua = '$agua', luz = '$luz', aguasNegras = '$aguasNegras' WHERE NoVivienda = $NoVivienda";
+        } else {
+            $queryVivienda = "INSERT INTO vivienda (NoVivienda, calle, tipoVivienda, condicion, tipoTecho, tipoPiso, agua, luz, aguasNegras) VALUES ('$NoVivienda', '$calle', '$tipoVivienda', '$condicion', '$tipoTecho', '$tipoPiso', '$agua', '$luz', '$aguasNegras')";
+        }
+        $vivienda = mysqli_query($conexion, $queryVivienda);
+
+
+
+        $query = "UPDATE general SET nombre = '$nombre', apellido = '$apellido', sexo = '$sexo', nacimiento = '$nacimiento', edoCivil = '$edoCivil', telefono = '$telefono', jefeFamilia = '$jefeFamilia', NoVivienda = '$NoVivienda' WHERE cedula = $cedula";
+
+        if (mysqli_query($conexion, $query) && $vivienda) {
             $msj = "Registro actualizado con éxito";
             echo "<h1 style='text-align: center; margin-top: 05%; padding: 5px;' class='alert alert-success' role='alert'>" . $msj . "</h1>";
             echo "<div style='text-align: center;'><a href='registrogeneral.php' class='btn btn-success'>continuar</a></div>";
         } else {
             echo "Error: " . $query . "<br>" . mysqli_error($conexion);
+            echo "Error: " . $vivienda . "<br>" . mysqli_error($conexion);
         };
     }
 

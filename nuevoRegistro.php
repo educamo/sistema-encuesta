@@ -22,6 +22,9 @@ include_once('header.php');
                 <form action="guardar.php?tipo=registro" method="post" id="nuevoRegistro" class="nuevoRegistro">
                     <div class="container-fluid">
                         <div class="row">
+                            <div class="col-lg-12">
+                                <h2>Datos Personales</h2>
+                            </div>
                             <div class="col-lg-4">
                                 <label for="cedula" class="form-label">CEDULA</label>
                                 <input type="text" id="cedula" name="cedula" class="form-control" required>
@@ -56,14 +59,27 @@ include_once('header.php');
                             </div>
                             <div class="col-lg-4">
                                 <label for="telefono" class="form-label">TELEFONO</label>
-                                <input type="phone" id="telefono" name="telefono" class="form-control">
+                                <input type="tel" id="telefono" name="telefono" class="form-control" pattern="[0-9]{9, }">
                             </div>
                             <div class="col-lg-4">
                                 <label for="jefeFamilia" class="form-label">JEFE DE FAMILIA</label>
                                 <select name="jefeFamilia" id="jefeFamilia" class="form-select">
-                                    <option value="0">No</option>
                                     <option value="1">Si</option>
+                                    <option value="0">No</option>
                                 </select>
+                            </div>
+                            <div class="col-lg-12" id="nucleoF">
+
+                            </div>
+                            <div class="col-lg-12" id="campos">
+
+                            </div>
+                            <div class="col-lg-12">
+                                <hr />
+                                <h2>Datos de Vivienda</h2>
+                                <?Php
+                                include_once('nuevaVivienda.php');
+                                ?>
                             </div>
                         </div>
                         <div class="row text-center mt-4">
@@ -87,5 +103,22 @@ include_once('header.php');
 <script type="text/javascript">
     $('.btn-primary').click(function() {
         alertify.message('Se Cancelo la Operación');
-    })
+    });
+
+    jQuery("#telefono").on('input', function(evt) {
+        // Allow only numbers.
+        jQuery(this).val(jQuery(this).val().replace(/[^0-9]/g, ''));
+    });
+
+    $("#jefeFamilia").change(function() {
+        var valor = $(this).val();
+        if (valor == 0) {
+            $("#nucleoF").html("<hr /> <h2>Datos Núcleo Familiar</h2>");
+            $("#campos").load('nuevaFamilia.php');
+
+        } else {
+            $("#nucleoF").html("");
+            $("#campos").html("");
+        }
+    });
 </script>

@@ -25,9 +25,13 @@ include_once('header.php');
 
             <?Php
             if (!isset($_GET['persona'])) { ?>
+
                 <form action="#" method="get">
                     <div class="container">
                         <div class="row">
+                            <div class="col-lg-12 text-end mb-5">
+                                <a href="registrogeneral.php" class="btn btn-primary offset-lg-6">Atrás</a>
+                            </div>
                             <div class="col-lg-4">
                                 <label for="persona" class="form-label">Persona </label>
                             </div>
@@ -40,7 +44,7 @@ include_once('header.php');
                                         $nom = $row['nombre'];
                                         $apelli = $row['apellido'];
                                     ?>
-                                        <option value="<?= $id ?>"><?= $id ." - ". $nom . " " . $apelli ?></option>
+                                        <option value="<?= $id ?>"><?= $id . " - " . $nom . " " . $apelli ?></option>
                                     <?php
                                     }
                                     mysqli_free_result($resultado);
@@ -77,8 +81,11 @@ include_once('header.php');
                 </div>
                 <div class="container">
                     <div class="row">
-                        <div class="col-lg-8 mb-5">
-                            <a href="nuevogas.php?id=<?= $id ?>&new=1" class="btn btn-success" title="Agregar nuevo Registro de Gas"><i class="fa fa-plus"></i> Agregar Registro de Salud</a>
+                        <div class="col-lg-8 mb-1">
+                            <a href="nuevogas.php?id=<?= $id ?>&new=1" class="btn btn-success" title="Agregar nuevo Registro de Gas"><i class="fa fa-plus"></i> Agregar Registro de Gas</a>
+                        </div>
+                        <div class="col-lg-6">
+                            <a href="pdfGas.php" class="btn btn-info mb-3" title="Imprimir Listado de Gas"><i class="fa fa-print"></i></a>
                         </div>
                         <div class="col-lg-12">
 

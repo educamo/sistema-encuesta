@@ -147,7 +147,7 @@ $pdf->writeHTML($html2, true, false, true, false, '');
     }
 
 mysqli_free_result($resultado);
-mysqli_close($con);
+mysqli_close($conexion);
 
 
 

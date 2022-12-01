@@ -60,7 +60,7 @@ include_once('header.php');
 
                 <h2 class="text-center p-3 alert alert-warning" role="alert">Debe Seleccionar una persona de la lista</h2>
                 <div class="col-lg-12">
-                    <a href="medicina.php" class="btn btn-primary offset-lg-6">Atras</a>
+                    <a href="registrogeneral.php" class="btn btn-primary offset-lg-6">Atras</a>
                 </div>
             <?php
             } else {
@@ -73,7 +73,7 @@ include_once('header.php');
 
             ?>
                 <div class="col-lg-12 text-end">
-                    <a href="medicina.php" class="btn btn-primary offset-lg-6">Atrás</a>
+                    <a href="registrogeneral.php" class="btn btn-primary offset-lg-6">Atrás</a>
                 </div>
                 <div class="container">
                     <div class="row">

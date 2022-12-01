@@ -11,7 +11,7 @@ if ($_GET['edit'] != 1) {
 $tituloPagina = 'Editar Registro';
 
 include_once('mostrar.php');
-$registro = mysqli_fetch_array($resultado);
+
 
 
 include_once('header.php');
@@ -20,7 +20,9 @@ include_once('header.php');
 
     <div class="container">
         <div class="row">
-
+            <div class="col-lg-12">
+                <h2>Datos Personales</h2>
+            </div>
             <div class col-lg-12>
                 <form action="editar.php?tipo=registro" method="post" id="editaroRegistro" class="nuevoRegistro">
                     <div class="container-fluid">
@@ -72,18 +74,32 @@ include_once('header.php');
                             </div>
                             <div class="col-lg-4">
                                 <label for="telefono" class="form-label">TELEFONO</label>
-                                <input type="phone" id="telefono" name="telefono" class="form-control" value="<?= $registro['telefono'] ?>">
+                                <input type="phone" id="telefono" name="telefono" class="form-control" value="<?= $registro['telefono'] ?>" pattern="[0-9]{9,}">
                             </div>
                             <div class="col-lg-4">
                                 <label for="jefeFamilia" class="form-label">JEFE DE FAMILIA</label>
                                 <select name="jefeFamilia" id="jefeFamilia" class="form-select">
                                     <option value="0" <?php if ($registro['jefeFamilia'] == '0') {
-                                                                echo ' selected="selected"';
-                                                            } ?>>No</option>
+                                                            echo ' selected="selected"';
+                                                        } ?>>No</option>
                                     <option value="1" <?php if ($registro['jefeFamilia'] == '1') {
-                                                                echo ' selected="selected"';
-                                                            } ?>>Si</option>
+                                                            echo ' selected="selected"';
+                                                        } ?>>Si</option>
                                 </select>
+                            </div>
+                            <div class="col-lg-4">
+                                <label for="NoVivienda" class="form-label">Número de la Vivienda</label>
+                                <input type="text" id="NoVivienda" name="NoVivienda" class="form-control" value="<?= $registro['NoVivienda'] ?>">
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <hr />
+                                <h2>Datos de la Vivienda</h2>
+                                <?Php
+                                include_once('editarvivienda.php')
+                                ?>
                             </div>
                         </div>
                         <div class="row text-center mt-4">
@@ -113,5 +129,76 @@ include_once('header.php');
 <script type="text/javascript">
     $('.btn-primary').click(function() {
         alertify.message('Se Cancelo la Operación');
-    })
+    });
+
+    jQuery("#telefono").on('input', function(evt) {
+        // Allow only numbers.
+        jQuery(this).val(jQuery(this).val().replace(/[^0-9]/g, ''));
+    });
+
+    $('#NoVivienda').focusout(function() {
+        var NoVivienda = $(this).val();
+        var urlajax = "mostrar.php";
+        var tituloPagina = 'Nueva Vivienda';
+
+        $.ajax({
+
+            // The URL for the request
+            url: urlajax,
+
+            // The data to send (will be converted to a query string)
+            data: {
+                id: NoVivienda,
+                pagina: tituloPagina
+            },
+
+            // Whether this is a POST or GET request
+            type: "GET",
+            beforeSend: function() {
+                $('#calle').prop("disabled", "disabled");
+                $('#tipoVivienda').prop("disabled", "disabled");
+                $('#condicion').prop("disabled", "disabled");
+                $('#tipoTecho').prop("disabled", "disabled");
+                $('#tipoPiso').prop("disabled", "disabled");
+                $('#agua').prop("disabled", "disabled");
+                $('#luz').prop("disabled", "disabled");
+                $('#aguanegras').prop("disabled", "disabled");
+                $('#calle').val('');
+                $('#tipoVivienda').val('');
+                $('#condicion').val('');
+                $('#tipoTecho').val('');
+                $('#tipoPiso').val('');
+                $('#agua').val('');
+                $('#luz').val('');
+                $('#aguanegras').val('');
+            },
+            success: function(r) {
+                $('#calle').removeAttr("disabled");
+                $('#tipoVivienda').removeAttr("disabled");
+                $('#condicion').removeAttr("disabled");
+                $('#tipoTecho').removeAttr("disabled");
+                $('#tipoPiso').removeAttr("disabled");
+                $('#agua').removeAttr("disabled");
+                $('#luz').removeAttr("disabled");
+                $('#aguanegras').removeAttr("disabled");
+                var data = JSON.parse(r);
+                datos = data;
+                $('#calle').val(datos[1]);
+                $('#tipoVivienda').val(datos[2]);
+                $('#condicion').val(datos[3]);
+                $('#tipoTecho').val(datos[4]);
+                $('#tipoPiso').val(datos[5]);
+                $('#agua').val(datos[6]);
+                $('#luz').val(datos[7]);
+                $('#aguanegras').val(datos[8]);
+
+            },
+            error: function(r) {
+
+            }
+        });
+
+
+
+    });
 </script>

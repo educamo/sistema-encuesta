@@ -83,7 +83,7 @@ include_once('header.php');
                 <div class="container">
                     <div class="row">
                         <div class="col-lg-8 mb-5">
-                            <a href="nuevaFamilia.php?id=<?= $id ?>&new=1" class="btn btn-success" title="Agregar nueva Familia"><i class="fa fa-plus"></i> Agregar Familia</a>
+                           <a href="#" class="btn btn-info" target="_blank"><i class="fa fa-print"></i></a>
                         </div>
 
                         <div class="col-lg-12">
@@ -102,6 +102,7 @@ include_once('header.php');
                                         <tr>
                                             <th>Cédula de Identidad</th>
                                             <th>Nombre Completo</th>
+                                            <th>Parentesco</th>
                                             <th>Acciones</th>
 
                                         </tr>
@@ -114,6 +115,7 @@ include_once('header.php');
                                         <tr>
                                             <td><?= $row['cedula'] ?></td>
                                             <td><?= $row['nombre'] . ' ' . $row['apellido'] ?></td>
+                                            <td><?= $row['parentesco'] ?></td>
                                             <td>
                                                 <a href="#" class="btn btn-danger" title="Borrar" data-id="<?= $cedula ?>"><i class="fa fa-trash"></i></a>
                                             </td>

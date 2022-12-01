@@ -12,6 +12,7 @@
   <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
 
   <script src="assets/js/jquery-3.6.1.min.js"></script>
+  <link rel="shortcut icon" href="assets/image/logo.png" type="image/x-icon">
 
   <!-- DataTables -->
   <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs5/jq-3.6.0/dt-1.13.1/datatables.min.css" />
@@ -56,16 +57,13 @@
             <a class="nav-link text-light" href="familia.php"><i class="fa fa-group"></i> Familias</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link text-light" href="vivienda.php"><i class="fa fa-home"></i> Registro Vivienda</a>
+            <a class="nav-link text-light" href="listvivienda.php"><i class="fa fa-home"></i> Viviendas</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link text-light" href="medicina.php"><i class="fa fa-heartbeat"></i> Registro Salud</a>
+            <a class="nav-link text-light" href="salud.php"><i class="fa fa-heartbeat"></i> Salud</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link text-light" href="gas.php"><i class="fa fa-fire"></i> Registro de Gas</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link text-light" href="reportes.php"><i class="fa fa-print"></i> Reportes</a>
+            <a class="nav-link text-light" href="gas.php"><i class="fa fa-fire"></i>  Gas</a>
           </li>
           <li class="nav-item">
             <a class="nav-link text-light" href="logout.php"><i class="fa fa-times"></i> Salir</a>

@@ -17,7 +17,7 @@ class MYPDF extends TCPDF
     //Page header
     public function Header()
     {
-        $PDF_HEADER_TITLE = 'Lista de Viviendas';
+        $PDF_HEADER_TITLE = 'Lista de Viviendas por Tipo';
         $LOGO = 'assets/image/logo.png';
         // Logo
         $image_file = $LOGO;
@@ -80,52 +80,42 @@ $pdf->AddPage();
         <thead>
             <tr align="center">
                 <th width="4%">N</th>
-                <th width="9%">CEDULA</th>
-                <th width="12%">NOMBRE</th>
-                <th width="12%">APELLIDO</th>
-                <th width="8%">TELEFONO</th>
-                <th width="9%">TIPO DE VIVIENDA</th>
-                <th width="9%">CONDICION</th>
-                <th width="9%">TIPO TECHO</th>
-                <th width="8%">TIPO PISO</th>
+                <th width="10%">N° DE LA VIVIENDA</th>
+                <th width="12%">CALLE</th>
+                <th width="12%">TIPO DE VIVIENDA</th>
+                <th width="12%">CONDICION</th>
+                <th width="15%">TIPO TECHO</th>
+                <th width="15%">TIPO PISO</th>
                 <th width="5%">AGUA</th>
                 <th width="5%">LUZ</th>
                 <th width="10%">AGUAS NEGRAS</th>
 
             </tr>
         </thead>
-</table> 
+</table>
 ';
     // output the HTML content
     $pdf->writeHTML($html, true, false, true, false, '');
 
+    $tipo = $_GET['tipo'];
+    $tipo = '"' . $tipo . '"';
+
     include_once('conexion.php');
 
     $consulta = "SELECT
-	r.cedula,
-	r.nombre,
-	r.apellido,
-	r.telefono,
-	v.tipoVivienda,
-	v.condicion,
-	v.tipoTecho,
-	v.tipoPiso,
-	v.agua,
-	v.luz,
-	v.aguasNegras
+	*
 FROM
-	general as r
-	JOIN vivienda as v ON v.cedula = r.cedula";
+	vivienda
+	WHERE tipoVivienda = $tipo";
+    $item = 0;
 
     $resultado = mysqli_query($conexion, $consulta);
 
 
     while ($row = mysqli_fetch_array($resultado)) {
         $item += 1;
-        $id = $row['cedula'];
-        $nombre = $row['nombre'];
-        $apellido = $row['apellido'];
-        $tlf = $row['telefono'];
+        $id = $row['NoVivienda'];
+        $calle = $row['calle'];
         $tipo = $row['tipoVivienda'];
         $condicion = $row['condicion'];
         $tipoTecho = $row['tipoTecho'];
@@ -139,14 +129,12 @@ FROM
     <table class="table">
             <tr align="center">
                     <td width="4%">' . $item . '</td>
-                    <td width="9%">' . $id . '</td>
-                    <td width="12%">' . $nombre . '</td>
-                    <td width="12%">' . $apellido . '</td>
-                    <td width="8%">' . $tlf . ' </td>
-                    <td width="9%">' . $tipo . ' </td>
-                    <td width="9%">' . $condicion . ' </td>
-                    <td width="9%">' . $tipoTecho . ' </td>
-                    <td width="8%">' . $tipoPiso . ' </td>
+                    <td width="10%">' . $id . '</td>
+                    <td width="12%">' . $calle . '</td>
+                    <td width="12%">' . $tipo . ' </td>
+                    <td width="12%">' . $condicion . ' </td>
+                    <td width="15%">' . $tipoTecho . ' </td>
+                    <td width="15%">' . $tipoPiso . ' </td>
                     <td width="5%">' . $agua . ' </td>
                     <td width="5%">' . $luz . ' </td>
                     <td width="10%">' . $aguasNegras . ' </td>
@@ -159,7 +147,7 @@ $pdf->writeHTML($html2, true, false, true, false, '');
     }
 
 mysqli_free_result($resultado);
-mysqli_close($con);
+mysqli_close($conexion);
 
 
 
